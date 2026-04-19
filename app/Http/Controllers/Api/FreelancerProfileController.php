@@ -5,71 +5,54 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFreelancerProfileRequest;
 use App\Http\Requests\UpdateFreelancerProfileRequest;
+use App\Http\Requests\AddSkillRequest; 
 use App\Services\FreelancerProfileService;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
-use App\Models\FreelancerProfile;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class FreelancerProfileController extends Controller
 {
-    protected FreelancerProfileService $freelancerprofileservice;
+    protected FreelancerProfileService $service;
 
-    public function __construct(FreelancerProfileService $freelancerprofileservice)
+    public function __construct(FreelancerProfileService $service)
     {
-        $this->freelancerprofileservice = $freelancerprofileservice;
+        $this->service = $service;
     }
 
     public function index(): JsonResponse
     {
-        $freelancers = $this->freelancerprofileservice->listFreelancers();
-
+        $freelancers = $this->service->listFreelancers();
         return response()->json([
             'status' => 'success',
-            'data'   => UserResource::collection($freelancers),
-            'meta'   => [
-                'total' => $freelancers->total(),
-                'page'  => $freelancers->currentPage()
-            ]
-        ]);
-    }
-    public function show(int $id): JsonResponse
-    {
-        $freelancer = $this->freelancerprofileservice->getFreelancerDetails($id);
-        return response()->json([
-            'status' => 'success',
-            'data'   => new UserResource($freelancer)
+            'data'   => UserResource::collection($freelancers)
         ]);
     }
 
-    public function store(StoreFreelancerProfileRequest $request)
+    public function myProfile(): JsonResponse
     {
-        $updatedUser = $this->freelancerprofileservice->saveProfile($request->user(), $request->validated());
-
         return response()->json([
-            'message' => 'Profile created successfully',
-            'data' => new UserResource($updatedUser)
-        ], 201);
+            'status' => 'success',
+            'data'   => new UserResource(Auth::user())
+        ]);
     }
 
-    public function update(UpdateFreelancerProfileRequest $request)
+    public function storeOrUpdate(UpdateFreelancerProfileRequest $request): JsonResponse
     {
-        $updatedUser = $this->freelancerprofileservice->saveProfile($request->user(), $request->validated());
-
+        $user = $this->service->saveProfile(Auth::user(), $request->validated());
         return response()->json([
-            'message' => 'Profile updated successfully',
-            'data' => new UserResource($updatedUser)
-        ], 200);
+            'message' => 'Profile processed successfully',
+            'data' => new UserResource($user)
+        ]);
     }
-    public function destroy(FreelancerProfile $freelancerProfile): JsonResponse
-    {
-        $this->freelancerprofileservice->deletefreelancerProfile($freelancerProfile);
 
+
+    public function addSkill(AddSkillRequest $request): JsonResponse
+    {
+        $user = $this->service->addSkill(Auth::user(), $request->validated());
         return response()->json([
-            'message' => 'Profile deleted successfully'
-        ], 200);
+            'message' => 'Skill added successfully',
+            'data' => new UserResource($user)
+        ]);
     }
 }

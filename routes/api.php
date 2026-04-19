@@ -49,11 +49,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         // مسارات الـ Profile
         Route::prefix('profile')->group(function () {
-            Route::get('/', [ProfileController::class, 'show']); // عرض الـ profile الحالي
-            Route::put('/', [ProfileController::class, 'update']); // تعديل الـ profile
-            Route::post('/skills', [ProfileController::class, 'addSkill']); // إضافة مهارة جديدة مع سنوات الخبرة
-            Route::put('/skills/{skillId}', [ProfileController::class, 'updateSkill']); // تحديث مهارة مع سنوات الخبرة
-            Route::delete('/skills/{skillId}', [ProfileController::class, 'deleteSkill']); // حذف مهارة (إذا لزم الأمر)
+            Route::get('/', [FreelancerProfileController::class, 'show']); // عرض الـ profile الحالي
+            Route::put('/', [FreelancerProfileController::class, 'update']); // تعديل الـ profile
+            Route::post('/skills', [FreelancerProfileController::class, 'addSkill']); // إضافة مهارة جديدة مع سنوات الخبرة
+            Route::put('/skills/{skillId}', [FreelancerProfileController::class, 'updateSkill']); // تحديث مهارة مع سنوات الخبرة
+            Route::delete('/skills/{skillId}', [FreelancerProfileController::class, 'deleteSkill']); // حذف مهارة (إذا لزم الأمر)
         });
     });
 
@@ -61,5 +61,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin/stats', [StatsController::class, 'index']); // لوحة الإحصائيات: إجمالي المستخدمين، المشاريع، العروض، قيمة العروض الكلية
     });
-
 });

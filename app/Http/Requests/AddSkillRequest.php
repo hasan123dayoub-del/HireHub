@@ -3,12 +3,19 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class AddSkillRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check() && auth()->user()->hasRole('freelancer');
+        $user = $this->user();
+
+        return User::query()
+            ->where('id', $user->id)
+            ->freelancers()
+            ->verified()
+            ->exists();
     }
 
     public function rules(): array

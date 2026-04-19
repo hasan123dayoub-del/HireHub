@@ -42,4 +42,10 @@ class ProposalService
     {
         return $this->repository->find($id)->load(['project', 'freelancer', 'attachments']);
     }
+    public function updateProposal(Proposal $proposal, array $data): Proposal
+    {
+        $proposal->update($data);
+
+        return $proposal->load(['project', 'user']);
+    }
 }

@@ -20,14 +20,14 @@ class UpdateFreelancerProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bio'             => ['sometimes', 'string', 'min:100'],
-            'hourly_rate'     => ['sometimes', 'numeric', 'min:5'],
-            'phone'           => ['sometimes', 'string', 'unique:freelancer_profiles,phone,' . $this->user()->profile->id],
-            'availability'    => ['sometimes', 'in:available,busy,unavailable'],
-            'avatar'          => ['nullable', 'image', 'max:2048'],
-            'skills'          => ['sometimes', 'array'],
-            'skills.*.id'     => ['required_with:skills', 'exists:skills,id'],
-            'skills.*.years'  => ['required_with:skills', 'integer', 'min:0'],
+            'bio'         => ['sometimes', 'string', 'min:100'],
+            'hourly_rate' => ['sometimes', 'numeric', 'min:5'],
+            'phone_number'       => ['sometimes', 'string', 'unique:freelancer_profiles,phone_number,' . $this->user()->freelancerProfile?->id],
+            'availability' => ['sometimes', 'in:available,busy,unavailable'],
+            'avatar'      => ['nullable', 'image', 'max:2048'],
+            'skills'      => ['sometimes', 'array'],
+            'skills.*.id' => ['required_with:skills', 'exists:skills,id'],
+            'skills.*.years' => ['required_with:skills', 'integer', 'min:0'],
         ];
     }
 }
