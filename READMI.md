@@ -38,3 +38,5 @@ Data Integrity via Form Requests: All validation and authorization logic is enca
 Atomic Transactions: Proposal acceptance and the subsequent rejection of competitors are wrapped in Database Transactions to ensure data consistency (all or nothing).
 
 API Analytics: A custom "After" Middleware logs every request’s duration and metadata for performance auditing and bottleneck detection.
+
+[Download API Collection (Postman)](c:\Users\Dell\Downloads\HireHub.postman_collection.json)
