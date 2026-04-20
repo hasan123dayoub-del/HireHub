@@ -39,4 +39,4 @@ Atomic Transactions: Proposal acceptance and the subsequent rejection of competi
 
 API Analytics: A custom "After" Middleware logs every request’s duration and metadata for performance auditing and bottleneck detection.
 
-[Download API Collection (Postman)](c:\Users\Dell\Downloads\HireHub.postman_collection.json)
+[Download API Collection (Postman)](./docs/HireHub.postman_collection.json)

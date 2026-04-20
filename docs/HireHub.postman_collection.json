@@ -1,0 +1,1454 @@
+{
+  "info": {
+    "_postman_id": "fb8f255b-bb14-4a06-a64f-5b63752422d6",
+    "name": "HireHub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49913877",
+    "_collection_link": "https://go.postman.co/collection/49913877-fb8f255b-bb14-4a06-a64f-5b63752422d6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authontication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|8VGNMgrHixnH7nEaNGIfVQ84YRsgUsBVQiiEaQoo3d77c9d0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@hirehub.com\",\r\n    \"password\": \"Example@Pass2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2|wBlr7FuMSA5SQDgrTZibrUKLCteX0MIoBt2Sbuy2246a1c18",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/logout",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Client",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|8VGNMgrHixnH7nEaNGIfVQ84YRsgUsBVQiiEaQoo3d77c9d0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"ali\",\r\n    \"email\":\"ali@example.com\",\r\n    \"password\":\"Example@Pass2026\",\r\n    \"password_confirmation\":\"Example@Pass2026\",\r\n    \"role\":\"client\",\r\n    \"city_id\":2\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Freelancer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|8VGNMgrHixnH7nEaNGIfVQ84YRsgUsBVQiiEaQoo3d77c9d0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Hasan",
+                  "type": "text",
+                  "uuid": "1c8c1619-29b9-41f1-9781-484d801df71d"
+                },
+                {
+                  "key": "email",
+                  "value": "Hasan@gamil.com",
+                  "type": "text",
+                  "uuid": "f55eb9d6-df06-4720-8f97-c102ec1c842e"
+                },
+                {
+                  "key": "password",
+                  "value": "Example@Pass2026",
+                  "type": "text",
+                  "uuid": "96b059a6-5189-4854-961f-a245232a0073"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "Example@Pass2026",
+                  "type": "text",
+                  "uuid": "5f99ee47-92c3-4a33-a6ae-c896288ae045"
+                },
+                {
+                  "key": "role",
+                  "value": "freelancer",
+                  "type": "text",
+                  "uuid": "07b3d9a2-a57b-4c30-97e8-ac70a75cb149"
+                },
+                {
+                  "key": "city_id",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "16d7464c-91c7-4842-91bd-869abd19c6cd"
+                },
+                {
+                  "key": "bio",
+                  "value": "\"I am a highly skilled Laravel developer with a deep understanding of backend architectures and API development. I have successfully delivered multiple projects involving complex database designs and real-time systems.\"",
+                  "type": "text",
+                  "uuid": "04417198-bcdb-4d75-b8d0-1e18ca1f69b9"
+                },
+                {
+                  "key": "phone_number",
+                  "value": "0933112233",
+                  "type": "text",
+                  "uuid": "5548c0a5-7628-407a-bc4d-d724ce70a66e"
+                },
+                {
+                  "key": "hourly_rate",
+                  "value": "25",
+                  "type": "text",
+                  "uuid": "6fb7781f-0772-4da5-b819-a011db80b53f"
+                },
+                {
+                  "key": "availability",
+                  "value": "available",
+                  "type": "text",
+                  "uuid": "304b7f60-c0ee-4a49-aff1-dee9264efd35"
+                },
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "uuid": "02eab828-836c-4c55-b07b-115038ebdd1f",
+                  "src": "postman-cloud:///1f120a29-f16d-4320-ba68-b00bf18f2379"
+                },
+                {
+                  "key": "skills[0][id]",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "3386c86e-ba99-4e2e-84da-2553f242491e"
+                },
+                {
+                  "key": "skills[0][years]",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "11a5f809-fede-411b-8090-a253c3c9dd0b"
+                },
+                {
+                  "key": "skills[1][id]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "ee6a9910-d37e-4d9c-8773-291f6a87340a"
+                },
+                {
+                  "key": "skills[1][years]",
+                  "value": "2",
+                  "type": "text",
+                  "uuid": "d7cb948e-2e45-4698-ac2a-658ed6c859ce"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "3|f18mc1LoxSaN0Uw3p6YEZ2HqFGOhXakcPr3hG89v8a79a3f1",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/destroyaccount",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "destroyaccount"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create Project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|AuGiXeMsNNDZzPXju2UWOCDW5YDLvAdSCkjBUH80b2ed6528",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Build a Laravel E-commerce API\",\r\n    \"description\": \"I am looking for a professional backend developer to create a full supplement store API using Laravel 11. The project must include payment gateway integration and a professional dashboard.\",\r\n    \"budget_type\": \"fixed\",\r\n    \"budget_amount\": 500,\r\n    \"delivery_date\": \"2026-05-20\",\r\n    \"tags\": [1, 2, 4]\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/projects",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Project",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|8VGNMgrHixnH7nEaNGIfVQ84YRsgUsBVQiiEaQoo3d77c9d0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/projects/4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "projects",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show All Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/projects",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|AuGiXeMsNNDZzPXju2UWOCDW5YDLvAdSCkjBUH80b2ed6528",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Updated: Build a Laravel E-commerce API\",\r\n    \"description\": \"This is the new description after updating the project details...\",\r\n    \"budget_amount\": 600,\r\n    \"delivery_date\": \"2026-06-01\",\r\n    \"tags\": [1, 3]\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/projects/4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "projects",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|AuGiXeMsNNDZzPXju2UWOCDW5YDLvAdSCkjBUH80b2ed6528",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/projects/7",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "projects",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profiles",
+      "item": [
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|XFY7oSXTIhN6COnMca6Zds6YZOKJcbUJLVg79we1f2023633",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bio",
+                  "value": "\"I am a professional software engineer with a deep passion for backend development. I have extensive experience building scalable web applications using Laravel, PHP, and MySQL. I always strive to write clean, maintainable code and follow the best industry practices to ensure high-quality software delivery for all clients.\"",
+                  "type": "text",
+                  "uuid": "bd388f88-8be3-4b55-928e-20f1bc41fc14"
+                },
+                {
+                  "key": "skills[0][id]",
+                  "value": "4",
+                  "type": "text",
+                  "uuid": "5cfc523f-a022-42e2-b760-a819e6a6d886"
+                },
+                {
+                  "key": "skills[0][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "8637a7da-c7db-477a-a008-3393a06b2c15"
+                },
+                {
+                  "key": "skills[1][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "abcb3a02-30ad-4be5-bbda-c420a03460c3"
+                },
+                {
+                  "key": "skills[1][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "e3aa9178-9fd7-4406-a37b-f1989915bed2"
+                },
+                {
+                  "key": "skills[2][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "9d98e456-4dc5-48a6-92a2-cfca36769cbd"
+                },
+                {
+                  "key": "skills[2][years]",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "51be8906-867c-4f3b-88b4-7c585e321681"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Skills In Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|XFY7oSXTIhN6COnMca6Zds6YZOKJcbUJLVg79we1f2023633",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "skill_id",
+                  "value": "2",
+                  "type": "text",
+                  "uuid": "3017ad2b-a0f9-4838-8293-139e645436e0"
+                },
+                {
+                  "key": "years_of_experience",
+                  "value": "9",
+                  "type": "text",
+                  "uuid": "0b8157a6-6970-4448-b505-b65db33956c4"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/profile/skills",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "profile",
+                "skills"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|XFY7oSXTIhN6COnMca6Zds6YZOKJcbUJLVg79we1f2023633",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bio",
+                  "value": "\"I am a professional software engineer with a deep passion for backend development. I have extensive experience building scalable web applications using Laravel, PHP, and MySQL. I always strive to write clean, maintainable code and follow the best industry practices to ensure high-quality software delivery for all clients.\"",
+                  "type": "text",
+                  "uuid": "bd388f88-8be3-4b55-928e-20f1bc41fc14"
+                },
+                {
+                  "key": "skills[0][id]",
+                  "value": "4",
+                  "type": "text",
+                  "uuid": "5cfc523f-a022-42e2-b760-a819e6a6d886"
+                },
+                {
+                  "key": "skills[0][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "8637a7da-c7db-477a-a008-3393a06b2c15"
+                },
+                {
+                  "key": "skills[1][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "abcb3a02-30ad-4be5-bbda-c420a03460c3"
+                },
+                {
+                  "key": "skills[1][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "e3aa9178-9fd7-4406-a37b-f1989915bed2"
+                },
+                {
+                  "key": "skills[2][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "9d98e456-4dc5-48a6-92a2-cfca36769cbd"
+                },
+                {
+                  "key": "skills[2][years]",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "51be8906-867c-4f3b-88b4-7c585e321681"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Skills",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|XFY7oSXTIhN6COnMca6Zds6YZOKJcbUJLVg79we1f2023633",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"years_of_experience\":1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/profile/skills/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "profile",
+                "skills",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Skill",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|XFY7oSXTIhN6COnMca6Zds6YZOKJcbUJLVg79we1f2023633",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/profile/skills/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "profile",
+                "skills",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Freelancers",
+      "item": [
+        {
+          "name": "Show All Freelancers",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2|4CybPJfr1duneBo4Tskv2357gsltymRtYjCNDKjZ6e7673c8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bio",
+                  "value": "\"I am a professional software engineer with a deep passion for backend development. I have extensive experience building scalable web applications using Laravel, PHP, and MySQL. I always strive to write clean, maintainable code and follow the best industry practices to ensure high-quality software delivery for all clients.\"",
+                  "type": "text",
+                  "uuid": "bd388f88-8be3-4b55-928e-20f1bc41fc14",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[0][id]",
+                  "value": "4",
+                  "type": "text",
+                  "uuid": "5cfc523f-a022-42e2-b760-a819e6a6d886",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[0][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "8637a7da-c7db-477a-a008-3393a06b2c15",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[1][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "abcb3a02-30ad-4be5-bbda-c420a03460c3",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[1][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "e3aa9178-9fd7-4406-a37b-f1989915bed2",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[2][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "9d98e456-4dc5-48a6-92a2-cfca36769cbd",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[2][years]",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "51be8906-867c-4f3b-88b4-7c585e321681",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/freelancers",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "freelancers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Freelancer",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2|4CybPJfr1duneBo4Tskv2357gsltymRtYjCNDKjZ6e7673c8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bio",
+                  "value": "\"I am a professional software engineer with a deep passion for backend development. I have extensive experience building scalable web applications using Laravel, PHP, and MySQL. I always strive to write clean, maintainable code and follow the best industry practices to ensure high-quality software delivery for all clients.\"",
+                  "type": "text",
+                  "uuid": "bd388f88-8be3-4b55-928e-20f1bc41fc14",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[0][id]",
+                  "value": "4",
+                  "type": "text",
+                  "uuid": "5cfc523f-a022-42e2-b760-a819e6a6d886",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[0][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "8637a7da-c7db-477a-a008-3393a06b2c15",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[1][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "abcb3a02-30ad-4be5-bbda-c420a03460c3",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[1][years]",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "e3aa9178-9fd7-4406-a37b-f1989915bed2",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[2][id]",
+                  "value": "6",
+                  "type": "text",
+                  "uuid": "9d98e456-4dc5-48a6-92a2-cfca36769cbd",
+                  "disabled": true
+                },
+                {
+                  "key": "skills[2][years]",
+                  "value": "3",
+                  "type": "text",
+                  "uuid": "51be8906-867c-4f3b-88b4-7c585e321681",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/freelancers/7",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "freelancers",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Proposels",
+      "item": [
+        {
+          "name": "Create Proposel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "5|PiGh1FcznpTNFPPtPDHzFqnSNjHludnYBl82eHSOdb94c78c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"project_id\": 1,\r\n    \"amount\": 250.50,\r\n    \"delivery_days\": 5,\r\n    \"cover_letter\":\"I am an experienced application developer with previous experience in similar projects. I have carefully read the details of your project and I can execute it with the highest quality and on time using the latest technologies.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/proposals",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "proposals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Proposal",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "5|PiGh1FcznpTNFPPtPDHzFqnSNjHludnYBl82eHSOdb94c78c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/proposals/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "proposals",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Proposal",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "6|hO48YEXmwsSwoizsWnUBHe3v4Qr9tUMlchjQgvUOc30aa26d",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"project_id\": 1,\r\n    \"amount\": 500.50,\r\n    \"delivery_days\": 10,\r\n    \"cover_letter\":\"I am an experienced application developer with previous experience in similar projects. I have carefully read the details of your project and I can execute it with the highest quality and on time using the latest technologies.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/proposals/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "proposals",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Show Admin Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2|0a8xsnv707J8Qw9UiaULXv3iVRzEiirR5Om7phD1e376f0a1",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/admin/stats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "admin",
+                "stats"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
