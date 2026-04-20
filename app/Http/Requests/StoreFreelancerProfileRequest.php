@@ -18,7 +18,7 @@ class StoreFreelancerProfileRequest extends FormRequest
         return [
             'bio'             => ['required', 'string', 'min:100'],
             'hourly_rate'     => ['required', 'numeric', 'min:5'],
-            'phone'           => ['required', 'string', 'unique:freelancer_profiles,phone'],
+            'phone_number' => ['required', 'string', 'unique:freelancer_profiles,phone_number'],
             'availability'    => ['required', 'in:available,busy,unavailable'],
             'avatar'          => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'skills'          => ['required', 'array', 'min:1'],

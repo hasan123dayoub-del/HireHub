@@ -10,11 +10,12 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -77,7 +78,7 @@ class User extends Authenticatable
     {
         return $this->hasOneThrough(Country::class, City::class, 'id', 'id', 'city_id', 'country_id');
     }
-    public function profile()
+    public function Profile()
     {
         return $this->hasOne(FreelancerProfile::class);
     }
@@ -94,6 +95,10 @@ class User extends Authenticatable
             'skill_id'
         )->withPivot('years_of_experience')
             ->withTimestamps();
+    }
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
     }
     /**
      * Requirement: Encrypt password automatically.

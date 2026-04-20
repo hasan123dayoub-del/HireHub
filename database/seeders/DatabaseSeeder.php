@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ProposelSeeder::class,
             ReviewSeeder::class,
             AttachmentSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

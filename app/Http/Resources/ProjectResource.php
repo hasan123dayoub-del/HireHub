@@ -14,18 +14,20 @@ class ProjectResource extends JsonResource
             'title' => $this->title,
             'description' => str($this->description)->limit(150),
             'budget' => [
-                'raw' => $this->budget,
-                'formatted' => number_format($this->budget, 0) . " $",
+                'raw' => $this->budget_amount,
+                'formatted' => number_format($this->budget_amount ?? 0, 0) . " $",
             ],
             'client' => [
-                'name' => $this->user->name,
-                'avatar' => $this->user->avatar_url ?? 'default.png',
-                'rating' => round($this->user->rating_cache ?? 5.0, 1),
+                'name' => optional($this->user)->name,
+                'avatar' => optional($this->user)->avatar_url ?? 'default.png',
+                'rating' => round(optional($this->user)->rating_cache ?? 5.0, 1),
             ],
             'proposals_count' => $this->proposals_count ?? 0,
 
             'tags' => TagResource::collection($this->whenLoaded('tags')),
-            'status' => $this->status,
+
+            'status' => $this->status ?? 'open',
+
             'published_at' => [
                 'human' => $this->created_at->diffForHumans(),
                 'date' => $this->created_at->format('Y-m-d'),

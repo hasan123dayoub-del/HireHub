@@ -16,7 +16,7 @@ class FreelancerProfileSeeder extends Seeder
 
         if ($freelancer) {
             \App\Models\FreelancerProfile::create([
-                'user_id' => $freelancer->id, // هذا هو الحقل الناقص الذي تسبب بالخطأ
+                'user_id' => $freelancer->id, 
                 'bio' => 'A full-stack developer specializing in Laravel and Vue.js...',
                 'hourly_rate' => 35,
                 'phone_number' => '0501234567',

@@ -10,11 +10,17 @@ class UpdateFreelancerProfileRequest extends FormRequest
 {
     public function authorize(): bool
     {
+        if ($this->user()->role !== 'freelancer') {
+            return false;
+        }
+
         $profile = $this->user()->freelancerProfile;
 
-        if (!$profile) return false;
+        if ($profile) {
+            return $this->user()->can('update', $profile);
+        }
 
-        return $this->user()->can('update', $profile);
+        return true;
     }
 
     public function rules(): array

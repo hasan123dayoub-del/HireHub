@@ -17,10 +17,16 @@ class AuthService
                 'password' => $data['password'],
                 'role'     => $data['role'],
                 'city_id'  => $data['city_id'],
+                'email_verified_at' => now(),
             ]);
 
             if ($user->role === 'freelancer') {
-                $user->freelancerProfile()->create();
+                $user->Profile()->create([
+                    'bio' => 'This is a default bio. Please update it.',
+                    'hourly_rate' => 20.00,
+                    'phone_number' => '0000000000',
+                    'availability' => 'available',
+                ]);
             }
 
             return $user;

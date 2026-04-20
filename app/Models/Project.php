@@ -22,6 +22,11 @@ class Project extends Model
         'delivery_date' => 'datetime',
         'budget_amount' => 'decimal:2',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function tags()
     {
         return $this->belongsToMany(

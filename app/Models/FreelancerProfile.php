@@ -19,6 +19,14 @@ class FreelancerProfile extends Model
         'portfolio_links' => 'array', // JSON Cast
         'hourly_rate' => 'decimal:2',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
     /**
      * Requirement: Uniform Phone Number format.
      */

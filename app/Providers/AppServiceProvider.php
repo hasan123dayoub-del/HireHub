@@ -8,6 +8,9 @@ use App\Repositories\Eloquent\EloquentProposalRepository;
 use App\Events\ProposalAccepted;
 use App\Listeners\SendProposalAcceptedNotification;
 use Illuminate\Support\Facades\Event;
+use App\Repositories\Interfaces\ProjectRepositoryInterface;
+use App\Repositories\Eloquent\EloquentProjectRepository;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,9 +19,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+       $this->app->bind(
+            ProjectRepositoryInterface::class,
+            EloquentProjectRepository::class
+        );
+
         $this->app->bind(
-            \App\Repositories\Interfaces\ProjectRepositoryInterface::class,
-            \App\Repositories\Eloquent\EloquentProjectRepository::class
+            ProposalRepositoryInterface::class,
+            EloquentProposalRepository::class
         );
     }
 

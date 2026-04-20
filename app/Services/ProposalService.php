@@ -19,11 +19,27 @@ class ProposalService
         return DB::transaction(function () use ($user, $data) {
             $project = Project::findOrFail($data['project_id']);
 
+            if ($project->user_id === $user->id) {
+                abort(403, 'You cannot apply for your own project.');
+            }
+
+            if ($project->status !== 'open') {
+                abort(
+                    403,
+                    'This project is no longer accepting bids.'
+                );
+            }
+
+            $exists = $user->proposals()->where('project_id', $project->id)->exists();
+            if ($exists) {
+                abort(400, 'I have already applied for this project.');
+            }
+
             $proposal = $user->proposals()->make($data);
             $proposal->project()->associate($project);
             $proposal->save();
 
-            return $proposal->load(['project', 'freelancer']);
+            return $proposal->load(['project.client', 'freelancer.profile']);
         });
     }
 
@@ -40,7 +56,15 @@ class ProposalService
 
     public function getProposalDetails(int $id): Proposal
     {
-        return $this->repository->find($id)->load(['project', 'freelancer', 'attachments']);
+        $proposal = $this->repository->find($id);
+
+        $proposal->load(['project.client', 'freelancer.profile']);
+
+        if ($proposal->status === 'accepted') {
+            $proposal->load(['attachments', 'milestones']);
+        }
+
+        return $proposal;
     }
     public function updateProposal(Proposal $proposal, array $data): Proposal
     {

@@ -14,6 +14,10 @@ class Proposal extends Model
         'status'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function project()
     {
         return $this->belongsTo(Project::class);

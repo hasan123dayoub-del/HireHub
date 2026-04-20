@@ -11,17 +11,18 @@ class FreelancerProfileResource extends JsonResource
     {
         return [
             'bio' => $this->bio,
-            'hourly_rate' => (float) $this->hourly_rate,
-            'availability' => $this->availability,
-            'phone' => $this->phone,
-            // مهارات المستقل مع سنوات الخبرة (من الجدول الوسيط)
-            'skills' => $this->skills->map(function ($skill) {
+            'hourly_rate' => $this->hourly_rate,
+
+            'skills' => optional($this->skills)->map(function ($skill) {
                 return [
-                    'id' => $skill->id,
-                    'name' => $skill->name,
-                    'years_of_experience' => $skill->pivot->years,
+                    'id'    => $skill->id,
+                    'name'  => $skill->name,
+                    'years' => $skill->pivot->years_of_experience,
+                    'is_editable' => $this->isOwner,
                 ];
-            }),
+            }) ?? [],
+
+            'reviews' => $this->when(!$this->isOwner, ReviewResource::collection($this->whenLoaded('reviews'))),
         ];
     }
 }
