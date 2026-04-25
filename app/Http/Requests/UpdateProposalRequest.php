@@ -27,12 +27,23 @@ class UpdateProposalRequest  extends FormRequest
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'amount'        => 'bid amount',
+            'delivery_days' => 'delivery timeframe',
+            'cover_letter'  => 'cover letter',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'amount.min'             => 'The bid amount must be at least $1.',
-            'delivery_days.min'      => 'Delivery time must be at least 1 day.',
-            'cover_letter.min'       => 'Please provide a more detailed cover letter (at least 50 characters).',
+            'amount.min'             => 'Even when updating, your :attribute must be at least $:min.',
+            'delivery_days.min'      => 'The :attribute must be at least :min day.',
+            'cover_letter.min'       => 'To keep your proposal competitive, the :attribute must be at least :min characters long.',
+            'amount.numeric'         => 'The :attribute must be a valid number.',
+            'delivery_days.integer'  => 'The :attribute must be a whole number of days.',
         ];
     }
 }

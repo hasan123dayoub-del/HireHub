@@ -25,12 +25,20 @@ class LoginRequest extends FormRequest
         ]);
     }
 
+    public function attributes(): array
+    {
+        return [
+            'email'    => 'email address',
+            'password' => 'password',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'email.required'    => 'We need your email address to log you in.',
-            'email.email'       => 'Please provide a valid email format.',
-            'password.required' => 'Password is required.',
+            'email.required'    => 'We need your :attribute to log you in.',
+            'email.email'       => 'The :attribute format is invalid.',
+            'password.required' => 'The :attribute is required to access your account.',
         ];
     }
 }

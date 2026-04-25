@@ -42,17 +42,24 @@ class StoreReviewRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'type' => 'review type',
-            'id'   => 'target ID',
+            'type'    => 'review type',
+            'id'      => $this->type === 'project' ? 'project' : 'freelancer',
+            'rating'  => 'star rating',
+            'comment' => 'feedback comment',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'rating.min' => 'Rating must be at least 1 star.',
-            'rating.max' => 'Rating cannot exceed 5 stars.',
-            'comment.min' => 'Please provide a brief comment about your experience (at least 10 characters).',
+            'type.required'   => 'Please specify if you are reviewing a :attribute or a freelancer.',
+            'type.in'         => 'The selected :attribute is invalid.',
+            'rating.required' => 'Your :attribute is important to us, please select between 1 and 5 stars.',
+            'rating.min'      => 'Your :attribute must be at least :min star.',
+            'rating.max'      => 'Your :attribute cannot exceed :max stars.',
+            'comment.required' => 'Please share your experience in the :attribute field.',
+            'comment.min'     => 'Your :attribute is a bit too short. Please provide at least :min characters.',
+            'comment.max'     => 'Your :attribute is too long. Please keep it under :max characters.',
         ];
     }
 }
