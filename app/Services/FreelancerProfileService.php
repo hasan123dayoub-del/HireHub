@@ -8,19 +8,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use App\Models\FreelancerProfile;
+use Illuminate\Support\Facades\Cache;
 
 class FreelancerProfileService
 {
     public function listFreelancers(int $perPage = 15): LengthAwarePaginator
     {
-        return User::freelancers()
-            ->verified()
-            ->with(['profile', 'skills'])
-            ->whereHas('profile', function ($query) {
-                $query->bestRated();
-            })
-            ->latest()
-            ->paginate($perPage);
+        $cacheKey = 'freelancers_available_' . $perPage;
+
+        return Cache::tags(['freelancers'])->remember($cacheKey, 3600, function () use ($perPage) { // Cache for 1 hour
+            return User::freelancers()
+                ->verified()
+                ->with(['profile', 'skills'])
+                ->whereHas('profile', function ($query) {
+                    $query->bestRated();
+                })
+                ->latest()
+                ->paginate($perPage);
+        });
     }
 
     public function getFreelancerDetails(int $id): User

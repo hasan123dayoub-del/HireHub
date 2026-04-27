@@ -39,5 +39,8 @@ class AppServiceProvider extends ServiceProvider
             ProposalAccepted::class,
             SendProposalAcceptedNotification::class
         );
+
+        \App\Models\Project::observe(\App\Observers\ProjectObserver::class);
+        \App\Models\FreelancerProfile::observe(\App\Observers\FreelancerProfileObserver::class);
     }
 }
