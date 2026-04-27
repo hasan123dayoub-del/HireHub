@@ -100,6 +100,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Proposal::class);
     }
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
     /**
      * Requirement: Encrypt password automatically.
      * Logic: Using Mutator ensures encryption even if the developer forgets bcrypt() in Controller.

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Cache;
 
 class FreelancerProfile extends Model
 {
@@ -56,6 +57,10 @@ class FreelancerProfile extends Model
     {
         return Attribute::make(
             get: function () {
+                $cached = Cache::get("freelancer_rating_{$this->user_id}");
+                if ($cached !== null) {
+                    return number_format($cached, 1) . " ⭐";
+                }
                 $avg = $this->reviews_avg_rating ?? ($this->user?->reviews()->avg('rating'));
                 return $avg ? number_format($avg, 1) . " ⭐" : "No reviews yet";
             },

@@ -40,15 +40,32 @@ class StoreProjectRequest extends FormRequest
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'title'         => 'project title',
+            'description'   => 'project description',
+            'budget_type'   => 'budget type',
+            'budget_amount' => 'budget amount',
+            'delivery_date' => 'delivery date',
+            'tags'          => 'project tags',
+            'tags.*'        => 'selected tag',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'title.min'             => 'The project title is too short. Please provide at least 10 characters.',
-            'description.min'       => 'Please provide a more detailed description (at least 50 characters).',
-            'budget_amount.min'     => 'The minimum budget for fixed projects is $10, and $1 for hourly projects.',
-            'delivery_date.after'   => 'The delivery date must be a future date.',
-            'tags.required'         => 'Please select at least one skill tag for your project.',
-            'tags.*.exists'         => 'One of the selected tags is invalid.',
+            'title.required'         => 'Your project needs a :attribute to attract freelancers.',
+            'title.min'              => 'The :attribute is too short. Please provide at least :min characters.',
+            'description.min'        => 'Please provide a more detailed :attribute (at least :min characters).',
+            'budget_amount.min'      => $this->budget_type === 'fixed'
+                ? 'The minimum budget for fixed projects is $10.'
+                : 'The minimum rate for hourly projects is $1.',
+            'delivery_date.after'    => 'The :attribute must be a future date; we can\'t travel back in time!',
+            'tags.required'          => 'Please select at least one :attribute to help freelancers find your project.',
+            'tags.max'               => 'You can only select up to :max :attribute.',
+            'tags.*.exists'          => 'One of the :attribute is invalid or no longer exists.',
         ];
     }
 }

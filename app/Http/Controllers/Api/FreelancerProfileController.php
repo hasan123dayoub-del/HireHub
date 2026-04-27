@@ -39,16 +39,6 @@ class FreelancerProfileController extends Controller
         ]);
     }
 
-    public function myProfile(): JsonResponse
-    {
-        $freelancer = $this->service->getFreelancerDetails(Auth::id());
-
-        return response()->json([
-            'status' => 'success',
-            'data'   => new ProjectResource($freelancer)
-        ]);
-    }
-
     public function update(UpdateFreelancerProfileRequest $request): JsonResponse
     {
         $user = $this->service->updateProfile(Auth::user(), $request->validated());

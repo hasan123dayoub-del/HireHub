@@ -20,9 +20,9 @@ class ProjectController extends Controller
         $this->projectService = $projectService;
     }
 
-    public function index(Request $request, ProjectService $service)
+    public function index()
     {
-        $projects = $service->listProjects($request->all());
+        $projects = $this->projectService->listProjects();
         return ProjectResource::collection($projects);
     }
 

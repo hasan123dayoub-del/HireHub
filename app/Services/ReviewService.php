@@ -16,11 +16,18 @@ class ReviewService
             abort(403, 'A project can only be evaluated after it has been closed and completed.');
         }
 
-        return $reviewable->reviews()->create([
+        $review = $reviewable->reviews()->create([
             'rating'  => $data['rating'],
             'comment' => $data['comment'],
             'user_id' => $reviewer->id,
         ]);
+
+        // Dispatch job to recalculate rating
+        if ($data['type'] === 'freelancer') {
+            \App\Jobs\CalculateFreelancerRating::dispatch($data['id']);
+        }
+
+        return $review;
     }
 
     private function resolveReviewable(string $type, int $id)

@@ -45,14 +45,30 @@ class UpdateProjectRequest extends FormRequest
             'tags.*'        => ['exists:tags,id'],
         ];
     }
+    public function attributes(): array
+    {
+        return [
+            'title'         => 'project title',
+            'description'   => 'project description',
+            'budget_type'   => 'budget type',
+            'budget_amount' => 'budget amount',
+            'delivery_date' => 'delivery date',
+            'tags'          => 'project tags',
+            'tags.*'        => 'selected tag',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'title.min'           => 'The project title must be at least 10 characters.',
-            'description.min'     => 'The description must be at least 50 characters long.',
-            'budget_amount.min'   => 'Invalid budget amount for the selected budget type.',
-            'delivery_date.after' => 'The delivery date must be a future date.',
-            'tags.*.exists'       => 'One or more selected tags are invalid.',
+            'title.min'           => 'When updating, the :attribute must still be at least :min characters.',
+            'description.min'     => 'The updated :attribute must be at least :min characters long for better clarity.',
+            'budget_amount.min'   => ($this->budget_type ?? $this->route('project')->budget_type) === 'fixed'
+                ? 'For fixed projects, the :attribute cannot be less than $10.'
+                : 'The minimum :attribute for hourly work is $1.',
+            'delivery_date.after' => 'The :attribute must be a date in the future.',
+            'tags.min'            => 'You must keep at least one :attribute.',
+            'tags.*.exists'       => 'One of the :attribute is invalid or no longer available.',
         ];
     }
 }

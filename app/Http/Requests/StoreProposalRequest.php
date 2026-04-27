@@ -24,17 +24,26 @@ class StoreProposalRequest extends FormRequest
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'project_id'    => 'project',
+            'amount'        => 'bid amount',
+            'delivery_days' => 'delivery timeframe',
+            'cover_letter'  => 'cover letter',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'project_id.exists'      => 'The selected project does not exist.',
-            'amount.required'        => 'Please specify your bid amount.',
-            'amount.numeric'         => 'The bid amount must be a valid number.',
-            'amount.min'             => 'The bid amount must be greater than zero.',
-            'delivery_days.required' => 'Please estimate the delivery time in days.',
-            'delivery_days.min'      => 'Delivery time must be at least 1 day.',
-            'cover_letter.required'  => 'A cover letter is required to apply.',
-            'cover_letter.min'       => 'The cover letter must be at least 50 characters long to better explain your approach.',
+            'project_id.exists'      => 'It seems the :attribute you are applying for is no longer available.',
+            'amount.required'        => 'Please specify your :attribute to let the client know your rate.',
+            'amount.min'             => 'The :attribute must be at least $1.',
+            'delivery_days.required' => 'The client needs to know your estimated :attribute.',
+            'delivery_days.min'      => 'The :attribute must be at least :min day.',
+            'cover_letter.required'  => 'Your :attribute is your chance to shine; please don\'t leave it empty.',
+            'cover_letter.min'       => 'To increase your chances, the :attribute should be at least :min characters long.',
         ];
     }
 }

@@ -39,4 +39,13 @@ class ProposalController extends Controller
             'data' => new ProposalResource($proposal)
         ]);
     }
+    public function accept(int $id): JsonResponse
+    {
+        $this->proposalService->acceptProposal($id);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Proposal accepted and others rejected successfully.'
+        ]);
+    }
 }

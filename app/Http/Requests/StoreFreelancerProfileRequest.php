@@ -27,16 +27,34 @@ class StoreFreelancerProfileRequest extends FormRequest
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'bio'              => 'professional biography',
+            'hourly_rate'      => 'hourly rate',
+            'phone_number'     => 'phone number',
+            'availability'     => 'availability status',
+            'avatar'           => 'profile picture',
+            'skills'           => 'skills list',
+            'skills.*.id'      => 'skill',
+            'skills.*.years'   => 'years of experience',
+        ];
+    }
+
     public function messages(): array
     {
         return [
-            'bio.min' => 'The biography is too short. Please write at least 100 characters to better describe your experience.',
-            'phone.unique' => 'This phone number is already registered with another account.',
-            'avatar.required' => 'A profile picture is required to complete your professional profile.',
-            'skills.min' => 'Please add at least one skill to your profile.',
-            'hourly_rate.min' => 'The hourly rate must be at least $5.',
-            'skills.*.id.exists' => 'One of the selected skills is invalid.',
-            'skills.*.years.required' => 'Years of experience is required for each skill.',
+            'bio.required'           => 'Your :attribute is essential for clients to know your background.',
+            'bio.min'                => 'The :attribute is too short. Please write at least :min characters to better describe your experience.',
+            'phone_number.required'  => 'A :attribute is required so clients can contact you.',
+            'phone_number.unique'    => 'This :attribute is already registered with another account.',
+            'hourly_rate.min'        => 'To maintain service quality, the :attribute must be at least $5.',
+            'avatar.required'        => 'A :attribute is required to complete your professional profile.',
+            'avatar.max'             => 'The :attribute size should not exceed 2MB.',
+            'skills.min'             => 'Please add at least one :attribute to your profile.',
+            'skills.*.id.exists'     => 'One of the selected skills is invalid.',
+            'skills.*.years.required' => 'Please specify the :attribute for each skill you selected.',
+            'skills.*.years.min'     => 'The :attribute cannot be negative.',
         ];
     }
 }

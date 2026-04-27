@@ -34,13 +34,32 @@ class RegisterRequest extends FormRequest
         ]);
     }
 
+    public function attributes(): array
+    {
+        return [
+            'name'     => 'full name',
+            'email'    => 'email address',
+            'password' => 'password',
+            'role'     => 'account type',
+            'city_id'  => 'city',
+        ];
+    }
     public function messages(): array
     {
         return [
-            'email.unique'   => 'This email is already registered. Please try logging in.',
-            'password.min'   => 'Password must be at least 8 characters long.',
-            'role.in'        => 'Please select a valid role (Client or Freelancer).',
-            'city_id.exists' => 'The selected city is invalid.',
+            'name.required'     => 'Please tell us who you are; the :attribute is required.',
+            'name.min'          => 'The :attribute must be at least :min characters.',
+
+            'email.required'    => 'An :attribute is essential for creating your account.',
+            'email.unique'      => 'This :attribute is already registered. Please try logging in.',
+
+            'password.required'  => 'You must secure your account with a :attribute.',
+            'password.confirmed' => 'The password confirmation does not match.',
+
+            'role.required'     => 'Please choose your :attribute (Client or Freelancer).',
+            'role.in'           => 'The selected :attribute is invalid.',
+            'city_id.required'  => 'Please select your :attribute to help us find jobs near you.',
+            'city_id.exists'    => 'The selected :attribute is not in our records.',
         ];
     }
 }
