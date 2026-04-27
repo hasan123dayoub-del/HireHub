@@ -7,32 +7,33 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectService
 {
     public function listProjects(array $filters = [], int $perPage = 15): LengthAwarePaginator
     {
-        return Project::query()
-            ->with(['user', 'tags'])
+        $cacheKey = 'projects_open_' . md5(serialize($filters) . $perPage);
 
-            ->withCount('proposals')
-
-            ->open()
-
-            ->when($filters['min_budget'] ?? null, function ($query, $minBudget) {
-                $query->budgetAbove($minBudget);
-            })
-            ->when($filters['this_month'] ?? null, function ($query) {
-                $query->publishedThisMonth();
-            })
-
-            ->latest()
-            ->paginate($perPage);
+        return Cache::tags(['projects'])->remember($cacheKey, 3600, function () use ($filters, $perPage) {
+            return Project::query()
+                ->with(['user', 'tags'])
+                ->withCount('proposals')
+                ->open()
+                ->when($filters['min_budget'] ?? null, function ($query, $minBudget) {
+                    $query->budgetAbove($minBudget);
+                })
+                ->when($filters['this_month'] ?? null, function ($query) {
+                    $query->publishedThisMonth();
+                })
+                ->latest()
+                ->paginate($perPage);
+        });
     }
 
     public function createProject(User $user, array $data, array $tags = [], array $files = []): Project
     {
-        return DB::transaction(function () use ($user, $data, $tags, $files) {
+        $project = DB::transaction(function () use ($user, $data, $tags, $files) {
             $project = $user->projects()->create($data);
 
             if (!empty($tags)) {
@@ -46,6 +47,14 @@ class ProjectService
 
             return $project->load(['user', 'tags', 'attachments']);
         });
+
+        // Invalidate cache for open projects
+        Cache::tags(['projects'])->flush();
+
+        // Dispatch job to send notifications
+        \App\Jobs\SendProjectPublishedNotification::dispatch($project);
+
+        return $project;
     }
 
     public function getProjectDetails(int $id): Project

@@ -51,7 +51,7 @@ class ProposalService
 
         $this->repository->rejectOthers($proposal->project_id, $proposalId);
 
-        event(new ProposalAccepted($proposal));
+        ProposalAccepted::dispatch($proposal);
     }
 
     public function getProposalDetails(int $id): Proposal
