@@ -1,0 +1,11 @@
+# Render Blueprint: free Docker web service for the HireHub demo API.
+services:
+  - type: web
+    name: hirehub-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /up
+    autoDeploy: true
+    envVars:
+      - key: APP_URL
+        value: https://hirehub-api.onrender.com
