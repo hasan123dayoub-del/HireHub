@@ -65,6 +65,15 @@ HireHub is a robust, scalable API built with **Laravel 12**. Inspired by platfor
 - **Aggregations:** `withCount()` for proposal tallies and `sum()` for financial analytics to keep memory usage low.
 - **Caching:** admin statistics are cached for 10 minutes (`Cache::remember`).
 
+### Measured: project listing
+
+One page of 15 open projects (each with a client, 3 tags and 5 proposals), median of 30 runs on local SQLite, measured with [`benchmarks/project-listing.php`](benchmarks/project-listing.php):
+
+| Version | Queries per page | Median time |
+|---|---|---|
+| Naive (relations loaded per row) | 48 | 9.2 ms |
+| Repository with `with(['user', 'tags'])` + `withCount('proposals')` | 5 | 5.9 ms |
+
 ## 🛡 Security & Business Integrity
 
 - **Role-based access control:** `CheckRole` (`role:client`, `role:freelancer`, `role:admin`) and `EnsureFreelancerIsVerified` middleware.
