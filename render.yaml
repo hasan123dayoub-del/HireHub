@@ -8,4 +8,4 @@ services:
     autoDeploy: true
     envVars:
       - key: APP_URL
-        value: https://hirehub-api.onrender.com
+        value: https://hirehub-api-dy61.onrender.com
