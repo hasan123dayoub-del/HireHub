@@ -2,6 +2,7 @@
 
 HireHub is a robust, scalable API built with **Laravel 12**. Inspired by platforms like Upwork and Freelancer, it connects Arab clients with verified freelancers, with a strong focus on architectural integrity and performance.
 
+[![tests](https://github.com/hasan123dayoub-del/HireHub/actions/workflows/tests.yml/badge.svg)](https://github.com/hasan123dayoub-del/HireHub/actions/workflows/tests.yml)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)
 ![Sanctum](https://img.shields.io/badge/Auth-Sanctum-FF2D20)
