@@ -1,4 +1,5 @@
 # Demo deployment image: Laravel API on SQLite, seeded with demo data on every boot.
+# CACHE_STORE=array: the app uses cache tags (redis, memcached or array only) and the free tier has no Redis.
 
 # 1) PHP dependencies (needed before the asset build, which imports Flux CSS from vendor/)
 FROM composer:2 AS vendor
@@ -34,7 +35,7 @@ ENV APP_ENV=production \
     LOG_CHANNEL=stderr \
     DB_CONNECTION=sqlite \
     QUEUE_CONNECTION=sync \
-    CACHE_STORE=database \
+    CACHE_STORE=array \
     SESSION_DRIVER=database \
     PHP_CLI_SERVER_WORKERS=4
 

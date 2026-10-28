@@ -45,13 +45,14 @@ class ProposalService
 
     public function acceptProposal(int $proposalId)
     {
-        $proposal = $this->repository->find($proposalId);
+        return DB::transaction(function () use ($proposalId) {
+            $proposal = $this->repository->find($proposalId);
+            $this->repository->updateStatus($proposalId, 'accepted');
+            $this->repository->rejectOthers($proposal->project_id, $proposalId);
 
-        $this->repository->updateStatus($proposalId, 'accepted');
-
-        $this->repository->rejectOthers($proposal->project_id, $proposalId);
-
-        event(new ProposalAccepted($proposal));
+            ProposalAccepted::dispatch($proposal);
+            return $proposal;
+        });
     }
 
     public function getProposalDetails(int $id): Proposal
@@ -61,7 +62,7 @@ class ProposalService
         $proposal->load(['project.client', 'freelancer.profile']);
 
         if ($proposal->status === 'accepted') {
-            $proposal->load(['attachments', 'milestones']);
+            $proposal->load(['attachments']);
         }
 
         return $proposal;
@@ -70,6 +71,6 @@ class ProposalService
     {
         $proposal->update($data);
 
-        return $proposal->load(['project', 'user']);
+        return $proposal->load(['project', 'freelancer']);
     }
 }
