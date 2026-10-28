@@ -6,12 +6,17 @@ use Tests\TestCase;
 use App\Services\ProposalService;
 use App\Repositories\Interfaces\ProposalRepositoryInterface;
 use App\Models\Proposal;
+use App\Events\ProposalAccepted;
+use Illuminate\Support\Facades\Event;
 use Mockery;
 
 class ProposalServiceTest extends TestCase
 {
     public function test_accept_proposal_logic_without_database()
     {
+        // Keep this a pure unit test: the ProposalAccepted listener queues a job that reads the database.
+        Event::fake([ProposalAccepted::class]);
+
         $repositoryMock = Mockery::mock(ProposalRepositoryInterface::class);
 
         $repositoryMock->shouldReceive('find')
@@ -31,6 +36,6 @@ class ProposalServiceTest extends TestCase
 
         $service->acceptProposal(10);
 
-        $this->assertTrue(true);
+        Event::assertDispatched(ProposalAccepted::class);
     }
 }
