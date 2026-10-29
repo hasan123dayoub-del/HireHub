@@ -8,6 +8,7 @@ use App\Repositories\Eloquent\EloquentProposalRepository;
 use App\Events\ProposalAccepted;
 use App\Listeners\SendProposalAcceptedNotification;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Gate;
 use App\Repositories\Interfaces\ProjectRepositoryInterface;
 use App\Repositories\Eloquent\EloquentProjectRepository;
 
@@ -42,5 +43,8 @@ class AppServiceProvider extends ServiceProvider
 
         \App\Models\Project::observe(\App\Observers\ProjectObserver::class);
         \App\Models\FreelancerProfile::observe(\App\Observers\FreelancerProfileObserver::class);
+
+        // The interactive API docs (/docs/api) are public so anyone can try the demo.
+        Gate::define('viewApiDocs', fn ($user = null) => true);
     }
 }

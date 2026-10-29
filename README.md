@@ -14,8 +14,9 @@ HireHub is a robust, scalable API built with **Laravel 12**. Inspired by platfor
 
 **API base URL:** https://hirehub-api-dy61.onrender.com
 
+- **Interactive API docs (try every endpoint in the browser):** https://hirehub-api-dy61.onrender.com/docs/api, generated from the code with [Scramble](https://scramble.dedoc.co). Log in with a demo account, paste the token as the Bearer token, and send requests.
 - Try the public endpoints: [`GET /api/projects`](https://hirehub-api-dy61.onrender.com/api/projects) and [`GET /api/freelancers`](https://hirehub-api-dy61.onrender.com/api/freelancers)
-- Demo accounts (from the seeders): admin `admin@hirehub.com` / `Example@Pass2026`, client `client@hirehub.com` / `password`, freelancer `dev@hirehub.com` / `password`
+- Demo accounts (from the seeders, with 8 sample projects, 4 freelancers, proposals and reviews): admin `admin@hirehub.com` / `Example@Pass2026`, client `client@hirehub.com` / `password`, freelancer `dev@hirehub.com` / `password`
 - Full request collection: [docs/HireHub.postman_collection.json](docs/HireHub.postman_collection.json)
 - Hosted on Render's free tier with SQLite: the first request after a period of inactivity can take about a minute, and the demo data resets on every restart.
 

@@ -14,6 +14,9 @@ class Proposal extends Model
         'status'
     ];
 
+    // Matches the column default, so a new proposal reports its status before it is reloaded.
+    protected $attributes = ['status' => 'pending'];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -25,7 +28,8 @@ class Proposal extends Model
 
     public function freelancer()
     {
-        return $this->belongsTo(User::class, 'freelancer_id');
+        // The freelancer who sent the proposal is stored in user_id.
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function attachments()

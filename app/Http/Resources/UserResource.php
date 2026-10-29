@@ -13,6 +13,11 @@ class UserResource extends JsonResource
    
         $isOwner = Auth::check() && Auth::id() === $this->id;
 
+        // Skills belong to the user (freelancer_skill), but they are shown inside the profile.
+        if ($this->relationLoaded('profile') && $this->profile && $this->relationLoaded('skills')) {
+            $this->profile->setRelation('skills', $this->skills);
+        }
+
         return [
             'id'    => $this->id,
             'name'  => $this->name,

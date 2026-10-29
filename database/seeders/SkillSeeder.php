@@ -2,32 +2,30 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class SkillSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $skills = ['PHP', 'Laravel', 'JavaScript', 'SQL'];
+        $skills = collect(['PHP', 'Laravel', 'MySQL', 'JavaScript', 'React', 'Vue.js', 'Figma', 'UI/UX Design', 'Flutter', 'Firebase', 'SEO', 'Content Writing'])
+            ->mapWithKeys(fn ($name) => [$name => Skill::create(['name' => $name])->id]);
 
-        $createdSkills = [];
+        // Years of experience per skill, per freelancer.
+        $freelancerSkills = [
+            'dev@hirehub.com' => ['PHP' => 4, 'Laravel' => 3, 'MySQL' => 3, 'Vue.js' => 1],
+            'lina@hirehub.com' => ['Figma' => 4, 'UI/UX Design' => 5, 'React' => 1],
+            'karim@hirehub.com' => ['Flutter' => 3, 'Firebase' => 3, 'JavaScript' => 2],
+            'nour@hirehub.com' => ['SEO' => 4, 'Content Writing' => 5],
+        ];
 
-        foreach ($skills as $name) {
-            $createdSkills[] = \App\Models\Skill::create(['name' => $name]);
+        foreach ($freelancerSkills as $email => $years) {
+            $user = User::where('email', $email)->firstOrFail();
+            foreach ($years as $skill => $count) {
+                $user->skills()->attach($skills[$skill], ['years_of_experience' => $count]);
+            }
         }
-
-        $freelancer = \App\Models\User::where('role', 'freelancer')->first();
-
-        if (!$freelancer) {
-            return;
-        }
-
-        $freelancer->skills()->attach($createdSkills[0]->id, [
-            'years_of_experience' => 4
-        ]);
     }
 }
