@@ -14,7 +14,10 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // The @example values pre-fill the request in the API docs with a demo account.
+            /** @example client@hirehub.com */
             'email'    => ['required', 'string', 'email'],
+            /** @example password */
             'password' => ['required', 'string'],
         ];
     }

@@ -17,9 +17,13 @@ class StoreProposalRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /** @example 2 */
             'project_id'    => ['required', 'exists:projects,id'],
+            /** @example 800 */
             'amount'        => ['required', 'numeric', 'min:1'],
+            /** @example 14 */
             'delivery_days' => ['required', 'integer', 'min:1'],
+            /** @example I can redesign the page in two weeks and hand over a clean Figma file. */
             'cover_letter'  => ['required', 'string', 'min:50'],
         ];
     }

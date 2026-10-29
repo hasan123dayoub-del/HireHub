@@ -26,15 +26,21 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /** @example Mobile app for a local bakery */
             'title'         => ['required', 'string', 'min:10', 'max:255', new CleanContent],
+            /** @example We need a simple Android and iOS app where customers can browse products and order for pickup. */
             'description'   => ['required', 'string', 'min:50', new CleanContent],
+            /** @example fixed */
             'budget_type'   => ['required', 'in:fixed,hourly'],
+            /** @example 1200 */
             'budget_amount' => [
                 'required',
                 'numeric',
                 $this->budget_type === 'fixed' ? 'min:10' : 'min:1'
             ],
+            /** @example 2027-06-30 */
             'delivery_date' => ['required', 'date', 'after:today'],
+            /** @example [1, 5] */
             'tags'          => ['required', 'array', 'min:1', 'max:5'],
             'tags.*'        => ['exists:tags,id'],
         ];
