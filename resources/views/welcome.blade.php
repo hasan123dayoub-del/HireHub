@@ -84,7 +84,7 @@
         <div class="card"><b>Documented</b>OpenAPI docs generated from the code, plus a Postman collection.</div>
     </div>
 
-    <p class="note">Free hosting: the server sleeps when idle, so the first request can take up to a minute. The demo database is reset on every restart.</p>
+    <p class="note">Hosted on Vercel with a PostgreSQL database. The demo data is reset every night, so feel free to create, edit and delete.</p>
 
     <footer>Built by <a href="https://hasan123dayoub-del.github.io/portfolio/">Hasan Dayoub</a>.</footer>
 </main>

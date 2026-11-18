@@ -23,7 +23,7 @@ class ApiPerformanceLogger
     {
         $endTime = microtime(true);
         $duration = ($endTime - $request->attributes->get('start_time')) * 1000;
-        Log::channel('daily')->info('API_PERFORMANCE_LOG', [
+        Log::channel(config('logging.performance_channel'))->info('API_PERFORMANCE_LOG', [
             'user_id' => $request->user()?->id,
             'url'     => $request->fullUrl(),
             'method'  => $request->method(),

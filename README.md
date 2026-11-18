@@ -12,13 +12,13 @@ HireHub is a robust, scalable API built with **Laravel 12**. Inspired by platfor
 
 ## 🌐 Live demo
 
-**API base URL:** https://hirehub-api-dy61.onrender.com
+**API base URL:** https://hirehub-hasan.vercel.app
 
-- **Interactive API docs (try every endpoint in the browser):** https://hirehub-api-dy61.onrender.com/docs/api, generated from the code with [Scramble](https://scramble.dedoc.co). Log in with a demo account, paste the token as the Bearer token, and send requests.
-- Try the public endpoints: [`GET /api/projects`](https://hirehub-api-dy61.onrender.com/api/projects) and [`GET /api/freelancers`](https://hirehub-api-dy61.onrender.com/api/freelancers)
+- **Interactive API docs (try every endpoint in the browser):** https://hirehub-hasan.vercel.app/docs/api, generated from the code with [Scramble](https://scramble.dedoc.co). Log in with a demo account, paste the token as the Bearer token, and send requests.
+- Try the public endpoints: [`GET /api/projects`](https://hirehub-hasan.vercel.app/api/projects) and [`GET /api/freelancers`](https://hirehub-hasan.vercel.app/api/freelancers)
 - Demo accounts (from the seeders, with 8 sample projects, 4 freelancers, proposals and reviews): admin `admin@hirehub.com` / `Example@Pass2026`, client `client@hirehub.com` / `password`, freelancer `dev@hirehub.com` / `password`
 - Full request collection: [docs/HireHub.postman_collection.json](docs/HireHub.postman_collection.json)
-- Hosted on Render's free tier with SQLite: the first request after a period of inactivity can take about a minute, and the demo data resets on every restart.
+- Hosted on Vercel (PHP runtime) with a Neon PostgreSQL database in Frankfurt. The demo data is reset on every deploy and every night.
 
 ## ✨ Features
 

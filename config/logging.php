@@ -20,6 +20,10 @@ return [
 
     'default' => env('LOG_CHANNEL', 'stack'),
 
+    // Where the API timing log goes (ApiPerformanceLogger). A file by default; read-only
+    // hosts such as Vercel send it to stderr instead.
+    'performance_channel' => env('LOG_PERFORMANCE_CHANNEL', 'daily'),
+
     /*
     |--------------------------------------------------------------------------
     | Deprecations Log Channel
